@@ -1,0 +1,310 @@
+<html>
+
+<head>
+
+    <title>Attend-Admin-Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link type="text/css" rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"
+    />
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
+
+</head>
+
+<body class="grey lighten-4">
+    <!--Navigation Header Starts-->
+    <header id="header" class="page-topbar">
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <ul class="left">
+                        <a href="#" class="brand-logo flow-text">&nbsp&nbsp&nbspAttend-Admin</a>
+                        <a href="#" data-activates="mobile-navbar" class="button-collapse"><i class="material-icons">menu</i></a>
+                    </ul>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a class="waves-effect waves-light modal-trigger" href="#modal-registration-form"><i class="material-icons">add</i></a></li>
+                        <li><a id="anchor-preprocess-images"><i class="material-icons">refresh</i></a></li>
+                        <li>
+                            <div class="header-search-wrapper">
+                                <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Search Student" />
+                                <i class="material-icons">search</i>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="side-nav" id="mobile-navbar">
+                        <li>
+                            <h5 class="black-text">Options</h5>
+                        </li>
+                        <li><a id="mobile-anchor-register" class="waves-effect waves-light modal-trigger red-text lighten-2"
+                                href="#modal-registration-form">Register</a></li>
+                        <li><a id="mobile-anchor-preprocess-images" class="red-text lighten-2">Process Images</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!--Navigation Header Ends-->
+    <main>
+        <!--Modal Registration Form Starts-->
+        <div id="modal-registration-form" class="modal">
+            <div class="modal-content">
+                <h4 class="header flow-text">Register Student</h4>
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="mdi-action-account-circle prefix"></i>
+                                <input id="name" type="text" class="validate">
+                                <label for="first_name">Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="mdi-action-account-circle prefix"></i>
+                                <input id="rollno" type="text" class="validate">
+                                <label for="roll_no">Rollno</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="mdi-communication-email prefix"></i>
+                                <input id="email" type="email" class="validate">
+                                <label for="email">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="mdi-communication-email prefix"></i>
+                                <input id="phone" type="number" class="validate">
+                                <label for="phone">PhoneNo</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="mdi-action-account-circle prefix"></i>
+                                <select>
+                                    <option value="" disabled selected>Choose your year</option>
+                                    <option value="1">1 year</option>
+                                    <option value="2">2 year</option>
+                                    <option value="3">3 year</option>
+                                    <option value="4">4 year</option>
+                            </select>
+                                <label>Year</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="mdi-action-account-circle prefix"></i>
+                                <select>
+                                <option value="" disabled selected>Choose your branch</option>
+                                <option value="1">Computer Engineering</option>
+                                <option value="2">Information Technology</option>
+                                <option value="3">Electronics and Communication</option>
+                                <option value="4">Mechanical Engineering</option>
+                                <option value="5">Electrical Engineering</option>
+                                <option value="6">Civil Engineering</option>
+                            </select>
+                                <label>Branch</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="mdi-action-account-circle prefix"></i>
+                                <select>
+                                <option value="" disabled selected>Choose your section</option>
+                            </select>
+                                <label>Section</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+            </div>
+        </div>
+        <!--Modal Registration Form Ends-->
+
+        <!--Face Capture Modal Starts-->
+        <!--<div class="modal-facecapture">
+        <div class="camera">
+            <video id="video">Video stream not available.</video>
+            <button id="startbutton">Take photo</button>
+        </div>
+        <canvas id="canvas">
+        </canvas>
+        <div class="output">
+            <img id="photo" alt="The screen capture will appear in this box.">
+        </div>
+    </div>-->
+        <!--Face Capture Modal Ends-->
+
+        <!--Student Details Display Starts-->
+        <div class="row">
+            <div id="parent-profile-image" class="col s3 m3 l3 hide-on-med-and-down">
+                <img id="profile-image" class="circle responsive-img z-depth-3" src="res/me.jpg">
+            </div>
+            <div class="container">
+                <div id="parent-profile-page-about-details " class="col s9 m9 l9">
+                    <h3 class="hide-on-med-and-down red-text lighten-2">Student Details :</h3>
+                    <div class="divider"></div>
+                    <br><br>
+                    <ul id="profile-page-about-details" class="collection z-depth-2 hide-on-med-and-down">
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s5 grey-text darken-1"><i class="tiny material-icons">account_circle</i> Name</div>
+                                <div class="col s7 grey-text text-darken-4 right-align">ABC Name</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s5 grey-text darken-1"><i class="material-icons">perm_identity</i> RollNo</div>
+                                <div class="col s7 grey-text text-darken-4 right-align">HTML, CSS</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s5 grey-text darken-1"><i class="tiny material-icons">email</i> Email</div>
+                                <div class="col s7 grey-text text-darken-4 right-align">NY, USA</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s5 grey-text darken-1"><i class="tiny material-icons">phone</i> PhoneNo</div>
+                                <div class="col s7 grey-text text-darken-4 right-align">18th June, 1991</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s5 grey-text darken-1"><i class="tiny material-icons">access_time</i> Year</div>
+                                <div class="col s7 grey-text text-darken-4 right-align">18th June, 1991</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s5 grey-text darken-1"><i class="tiny material-icons">school</i> Branch</div>
+                                <div class="col s7 grey-text text-darken-4 right-align">18th June, 1991</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s5 grey-text darken-1"><i class="tiny material-icons">format_list_numbered</i> Section</div>
+                                <div class="col s7 grey-text text-darken-4 right-align">18th June, 1991</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <a id="anchor-icon-edit" class="waves-effect waves-light btn btn-floating red lighten-1 hide-on-med-and-down"><i class="material-icons">edit</i></a>
+            </div>
+        </div>
+        <!--Student Details Display Ends-->
+
+        <!--Student Details Display Mobile Version Starts-->
+        <div class="row">
+            <div class="container">
+                <div id="mobile-parent-profile-image" class="hide-on-large-only">
+                    <img id="profile-image" class="responsive-img z-depth-3" src="res/me.jpg">
+                </div>
+            </div>
+            <div class="container">
+                <div id="mobile-parent-profile-page-about-details">
+                    <h3 class="hide-on-large-only red-text lighten-2">Student Details :</h3>
+                    <div class="divider"></div>
+                    <br><br>
+                    <ul id="mobile-profile-page-about-details" class="collection z-depth-2 hide-on-large-only">
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s5 grey-text darken-1"><i class="tiny material-icons">account_circle</i> Name</div>
+                                <div class="col s7 grey-text text-darken-4 right-align">ABC Name</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s5 grey-text darken-1"><i class="material-icons">perm_identity</i> RollNo</div>
+                                <div class="col s7 grey-text text-darken-4 right-align">HTML, CSS</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s5 grey-text darken-1"><i class="tiny material-icons">email</i> Email</div>
+                                <div class="col s7 grey-text text-darken-4 right-align">NY, USA</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s5 grey-text darken-1"><i class="tiny material-icons">phone</i> PhoneNo</div>
+                                <div class="col s7 grey-text text-darken-4 right-align">18th June, 1991</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s5 grey-text darken-1"><i class="tiny material-icons">access_time</i> Year</div>
+                                <div class="col s7 grey-text text-darken-4 right-align">18th June, 1991</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s5 grey-text darken-1"><i class="tiny material-icons">school</i> Branch</div>
+                                <div class="col s7 grey-text text-darken-4 right-align">18th June, 1991</div>
+                            </div>
+                        </li>
+                        <li class="collection-item">
+                            <div class="row">
+                                <div class="col s5 grey-text darken-1"><i class="tiny material-icons">format_list_numbered</i> Section</div>
+                                <div class="col s7 grey-text text-darken-4 right-align">18th June, 1991</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <a id="mobile-anchor-icon-edit" class="waves-effect waves-light btn btn-floating red lighten-1 hide-on-large-only"><i class="material-icons">edit</i></a>
+            </div>
+        </div>
+        <!--Student Details Display Mobile Version Ends-->
+    </main>
+
+    <!--Footer Starts-->
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l4 s12">
+                    <h5 class="white-text">Attend App</h5>
+                    <p class="grey-text text-lighten-4">Attend is an android application through which you can easily mark your attendance.For now it only supports
+                        android.
+                    </p>
+                </div>
+                <div class="col l4 s12">
+                    <h5 class="white-text">Help Attend Grow</h5>
+                    <p class="grey-text text-lighten-4">Attend is an opensource project easing the process of taking attendance in institution. If you like this
+                        project you can also contribute by following the github link.
+                    </p>
+                </div>
+                <div class="col l4 s12" style="overflow: hidden;">
+                    <h5 class="white-text">Connect</h5>
+                    <iframe src="http://ghbtns.com/github-btn.html?user=dogfalo&repo=materialize&type=watch&count=true&size=large" allowtransparency="true"
+                        frameborder="0" scrolling="0" width="170" height="30"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2017-2017 Attend, All rights reserved.
+                <!--TODO: Add License-->
+                <a class="grey-text text-lighten-4 right" href="">MIT License</a>
+            </div>
+        </div>
+    </footer>
+    <!--Footer Ends-->
+
+    <!--Script Starts-->
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.js"></script>
+    <script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <!--<script type="text/javascript" src="js/capture.js"></script>-->
+    <script type="text/javascript" src="js/main.js"></script>
+    <!--Script Ends-->
+
+</body>
+
+</html>
