@@ -8,6 +8,11 @@ main {
     flex: 1 0 auto;
 }
 
+input:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px #fafafa inset !important;
+    -webkit-box-shadow: 0 0 0px 1000px #fafafa inset !important;
+}
+
 .navbar-fixed {
     z-index: 9999;
 }
@@ -125,7 +130,7 @@ input.header-search-input:focus {
 }
 
 #parent-profile-image>img {
-    width: 60%;
+    width: 60% !important;
     margin-left: 4vw;
     margin-top: 7vh;
 }
@@ -156,29 +161,11 @@ input.header-search-input:focus {
     font-size: 1.8rem;
 }
 
+
 /*CSS For Webcamera-Frame*/
-
-#video {
-    border: 1px solid black;
-    box-shadow: 2px 2px 3px black;
-    width: 320px;
-    height: 240px;
-}
-
-#photo {
-    border: 1px solid black;
-    box-shadow: 2px 2px 3px black;
-    width: 320px;
-    height: 240px;
-}
 
 #canvas {
     display: none;
-}
-
-.camera {
-    width: 340px;
-    display: inline-block;
 }
 
 .output {
@@ -186,17 +173,29 @@ input.header-search-input:focus {
     display: inline-block;
 }
 
+.center-modal {
+    position: absolute;
+    left: 50%;
+    margin: 0 auto;
+    display: flex;
+}
+
+.center-modal .modal {
+    position: relative;
+    left: -50%;
+    width: auto;
+}
+
+
 #startbutton {
     display: block;
-    position: relative;
+    position: absolute;
     margin-left: auto;
     margin-right: auto;
-    bottom: 32px;
-    background-color: rgba(0, 150, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.2);
+    bottom: 1vh;
+    background: None;
+    left: 42%;
     font-size: 14px;
-    font-family: "Lucida Grande", "Arial", sans-serif;
     color: rgba(255, 255, 255, 1.0);
 }
 

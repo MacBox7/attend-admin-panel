@@ -52,39 +52,34 @@
             <div class="modal-content">
                 <h4 class="header flow-text">Register Student</h4>
                 <div class="row">
-                    <form class="col s12">
+                    <form class="col s12" id="form-register">
                         <div class="row">
                             <div class="input-field col s12">
-                                <i class="mdi-action-account-circle prefix"></i>
-                                <input id="name" type="text" class="validate">
+                                <input id="name" type="text" class="validate" name="name" required>
                                 <label for="first_name">Name</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <i class="mdi-action-account-circle prefix"></i>
-                                <input id="rollno" type="text" class="validate">
+                                <input id="rollno" type="number" class="validate" name="rollno" required>
                                 <label for="roll_no">Rollno</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <i class="mdi-communication-email prefix"></i>
-                                <input id="email" type="email" class="validate">
+                                <input id="email" type="email" class="validate" name="email" required>
                                 <label for="email">Email</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <i class="mdi-communication-email prefix"></i>
-                                <input id="phone" type="number" class="validate">
+                                <input id="phone" type="number" class="validate" name="phone" required>
                                 <label for="phone">PhoneNo</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <i class="mdi-action-account-circle prefix"></i>
-                                <select>
+                                <select name="year" required>
                                     <option value="" disabled selected>Choose your year</option>
                                     <option value="1">1 year</option>
                                     <option value="2">2 year</option>
@@ -96,8 +91,7 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <i class="mdi-action-account-circle prefix"></i>
-                                <select>
+                                <select name="branch" required>
                                 <option value="" disabled selected>Choose your branch</option>
                                 <option value="1">Computer Engineering</option>
                                 <option value="2">Information Technology</option>
@@ -111,10 +105,10 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <i class="mdi-action-account-circle prefix"></i>
-                                <select>
-                                <option value="" disabled selected>Choose your section</option>
-                            </select>
+                                <select name="section" required>
+                                 <option value="" disabled selected>Choose your section</option>
+                                 <option value="1">IT-5</option>
+                                </select>
                                 <label>Section</label>
                             </div>
                         </div>
@@ -122,29 +116,31 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a class=" modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
+                <button type="submit" id="btn-submit-form" form="form-register" class="modal-action modal-submit waves-effect waves-green btn-flat teal">Submit</button>
             </div>
         </div>
         <!--Modal Registration Form Ends-->
 
         <!--Face Capture Modal Starts-->
-        <!--<div class="modal-facecapture">
-        <div class="camera">
-            <video id="video">Video stream not available.</video>
-            <button id="startbutton">Take photo</button>
+        <div class="center-modal" id="parent-modal-facecapture">
+            <div class="modal" id="modal-facecapture">
+                <div class="camera">
+                    <video id="video">Video stream not available.</video>
+                    <button id="startbutton">Capture</button>
+                </div>
+            </div>
         </div>
+
+        <!-- Empty Canvas To Draw The Image -->
         <canvas id="canvas">
         </canvas>
-        <div class="output">
-            <img id="photo" alt="The screen capture will appear in this box.">
-        </div>
-    </div>-->
+
         <!--Face Capture Modal Ends-->
 
         <!--Student Details Display Starts-->
         <div class="row">
             <div id="parent-profile-image" class="col s3 m3 l3 hide-on-med-and-down">
-                <img id="profile-image" class="circle responsive-img z-depth-3" src="res/me.jpg">
+                <img id="profile-image" class="circle responsive-img z-depth-3" src="res/default-avatar.png">
             </div>
             <div class="container">
                 <div id="parent-profile-page-about-details " class="col s9 m9 l9">
@@ -205,7 +201,7 @@
         <div class="row">
             <div class="container">
                 <div id="mobile-parent-profile-image" class="hide-on-large-only">
-                    <img id="profile-image" class="responsive-img z-depth-3" src="res/me.jpg">
+                    <img id="mobile-profile-image" class="responsive-img z-depth-3" src="res/default-avatar.png">
                 </div>
             </div>
             <div class="container">
@@ -282,7 +278,7 @@
                 </div>
                 <div class="col l4 s12" style="overflow: hidden;">
                     <h5 class="white-text">Connect</h5>
-                    <iframe src="http://ghbtns.com/github-btn.html?user=dogfalo&repo=materialize&type=watch&count=true&size=large" allowtransparency="true"
+                    <iframe src="http://ghbtns.com/github-btn.html?user=MacBox7&repo=attend-admin-panel&type=watch&count=true&size=large" allowtransparency="true"
                         frameborder="0" scrolling="0" width="170" height="30"></iframe>
                 </div>
             </div>
@@ -301,7 +297,7 @@
     <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.js"></script>
     <script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
-    <!--<script type="text/javascript" src="js/capture.js"></script>-->
+    <script type="text/javascript" src="js/capture.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <!--Script Ends-->
 
