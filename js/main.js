@@ -1,12 +1,13 @@
 (function ($) {
 
     $.URL = {
-        FORMREGISTER: "something",
-        REFRESHDATABASE: "something"
+        FORMREGISTER: "http://127.0.0.1:5000/api/admin/store",
+        REFRESHDATABASE: "http://127.0.0.1:5000/api/openface/train"
     };
 
     $(document).ready(function () {
         materializeInit();
+
     });
 
     $("#anchor-preprocess-images, #mobile-anchor-preprocess-images").click(function () {
@@ -24,15 +25,16 @@
             $.ajax({
                 type: "get",
                 url: URL.REFRESHDATABASE,
-                success: function (data) {}
-            }).done(function (data) {
-                swal(
-                    'Success!',
-                    'All images have been processed',
-                    'success'
-                )
-            }).error(function (data) {
-                swal("Oops", "We couldn't connect to the server!", "error");
+                success: function (data) {
+                    swal(
+                        'Success!',
+                        'All images have been processed',
+                        'success'
+                    )
+                },
+                error: function (error) {
+                    swal("Oops", "We couldn't connect to the server!", "error");
+                }
             });
         }, function (dismiss) {
             if (dismiss === 'cancel') {
@@ -51,7 +53,7 @@
 
     $("#form-register").submit(function (event) {
 
-        localStorage.setItem("formDetails", $("#form-register").serialize());
+        localStorage.setItem("formDetails", JSON.stringify($("#form-register").serializeArray()));
         $("#modal-facecapture").modal("open");
         event.preventDefault();
 
@@ -59,15 +61,25 @@
 
     $("#startbutton").click(function () {
         window.takepicture(function () {
+            var data = JSON.parse(localStorage.getItem('formDetails'));
+
+            data.push({
+                name: 'base64Image',
+                value: getBase64Image()
+            });
+
             $.ajax({
                 type: "POST",
                 url: $.URL.FORMREGISTER,
-                data: localStorage.getItem('formDetails'),
+                data: JSON.stringify(data),
+                dataType:"json",
                 success: function (data) {
                     localStorage.removeItem("formDetails");
                     $("#modal-facecapture").modal("close");
                     $("#modal-registration-form").modal("close");
-                    alert(data);
+                },
+                error: function(error) {
+                    console.log(error);
                 }
             });
         });
@@ -84,6 +96,13 @@
             width: 0
         });
         $(".modal").modal();
+    }
+
+    function getBase64Image() {
+        var canvas = $("#canvas")[0];
+        var dataURL = canvas.toDataURL("image/png");
+        var base64Image = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+        return base64Image;
     }
 
 })(jQuery);
