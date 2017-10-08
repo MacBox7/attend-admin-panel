@@ -1,7 +1,7 @@
 (function ($) {
 
     $.URL = {
-        FORMREGISTER: "http://127.0.0.1:5000/api/admin/store",
+        FORMREGISTER: "http://localhost:5000/api/admin/store",
         REFRESHDATABASE: "http://127.0.0.1:5000/api/openface/train"
     };
 
@@ -65,20 +65,21 @@
 
             data.push({
                 name: 'base64Image',
-                value: getBase64Image()
+                value: 'url-to-image'
             });
-
+            
             $.ajax({
                 type: "POST",
                 url: $.URL.FORMREGISTER,
-                data: JSON.stringify(data),
-                dataType:"json",
+                contentType: 'application/json',
+                dataType: "json",
+                data: convertToJSON(data),
                 success: function (data) {
                     localStorage.removeItem("formDetails");
                     $("#modal-facecapture").modal("close");
                     $("#modal-registration-form").modal("close");
                 },
-                error: function(error) {
+                error: function (error) {
                     console.log(error);
                 }
             });
@@ -103,6 +104,16 @@
         var dataURL = canvas.toDataURL("image/png");
         var base64Image = dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
         return base64Image;
+    }
+
+    function convertToJSON(unindexed_array){
+        var indexed_array = {};
+    
+        $.map(unindexed_array, function(n, i){
+            indexed_array[n['name']] = n['value'];
+        });
+    
+        return JSON.stringify(indexed_array);
     }
 
 })(jQuery);
