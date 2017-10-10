@@ -2,11 +2,25 @@
 
     $.URL = {
         FORMREGISTER: "http://localhost:5000/api/admin/store",
-        REFRESHDATABASE: "http://127.0.0.1:5000/api/openface/train"
+        REFRESHDATABASE: "http://127.0.0.1:5000/api/openface/train",
+        GETALLROLLNO: "http://localhost:5000/api/admin/student",
+        GETSTUDENTDETAILS: "http://localhost:5000/api/admin/student"
     };
 
-    $(document).ready(function () {
+    $(function () {
         materializeInit();
+        
+        $.ajax({
+            url: $.URL.GETALLROLLNO,
+            success: function (data) {
+                console.log('Autocomplete initialized');
+                initAutoComplete(data);
+            },
+            error: function (error) {
+                console.log(error);
+                initAutoComplete(null);
+            }
+        });
 
     });
 
@@ -65,9 +79,9 @@
 
             data.push({
                 name: 'base64Image',
-                value: 'url-to-image'
+                value: getBase64Image()
             });
-            
+
             $.ajax({
                 type: "POST",
                 url: $.URL.FORMREGISTER,
@@ -106,14 +120,49 @@
         return base64Image;
     }
 
-    function convertToJSON(unindexed_array){
+    function convertToJSON(unindexed_array) {
         var indexed_array = {};
-    
-        $.map(unindexed_array, function(n, i){
+
+        $.map(unindexed_array, function (n, i) {
             indexed_array[n['name']] = n['value'];
         });
-    
+
         return JSON.stringify(indexed_array);
+    }
+
+    function initAutoComplete(data) {
+        var indexed_array = {}
+
+        if (data !== undefined && data !== null) {
+            data.data.forEach(function (entry) {
+                indexed_array[entry] = null;
+            });
+        }
+
+        $('#input-search').autocomplete({
+            data: indexed_array,
+            limit: 6,
+            onAutocomplete: function (val) {
+                $("#panel-attendIntro").css('display', 'none');
+                $("#mobile-panel-studentDetails").css('display', 'block');
+                $("#panel-studentDetails").css('display', 'block');
+
+                $.ajax({
+                    type: "POST",
+                    url: $.URL.FORMREGISTER,
+                    contentType: 'application/json',
+                    dataType: "json",
+                    data: convertToJSON(data),
+                    success: function (data) {
+                        
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            },
+            minLength: 1,
+        });
     }
 
 })(jQuery);

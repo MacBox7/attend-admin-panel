@@ -8,7 +8,6 @@
     <link type="text/css" rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"
     />
     <link type="text/css" rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
 
 </head>
@@ -28,7 +27,7 @@
                         <li><a id="anchor-preprocess-images"><i class="material-icons">refresh</i></a></li>
                         <li>
                             <div class="header-search-wrapper">
-                                <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Search Student" />
+                                <input id="input-search" type="text" name="Search" class="header-search-input z-depth-2" placeholder="Search Student" />
                                 <i class="material-icons">search</i>
                             </div>
                         </li>
@@ -138,7 +137,7 @@
         <!--Face Capture Modal Ends-->
 
         <!--Student Details Display Starts-->
-        <div class="row">
+        <div class="row" id="panel-studentDetails">
             <div id="parent-profile-image" class="col s3 m3 l3 hide-on-med-and-down">
                 <img id="profile-image" class="circle responsive-img z-depth-3" src="res/default-avatar.png">
             </div>
@@ -198,7 +197,7 @@
         <!--Student Details Display Ends-->
 
         <!--Student Details Display Mobile Version Starts-->
-        <div class="row">
+        <div class="row" id="mobile-panel-studentDetails">
             <div class="container">
                 <div id="mobile-parent-profile-image" class="hide-on-large-only">
                     <img id="mobile-profile-image" class="responsive-img z-depth-3" src="res/default-avatar.png">
@@ -258,6 +257,49 @@
             </div>
         </div>
         <!--Student Details Display Mobile Version Ends-->
+        <!-- Attend Into Panel Starts Here -->
+        <div class="container" id="panel-attendIntro">
+            <div class="section">
+
+                <div class="row">
+                    <h3 class="col s12 light center header red-text text-lighten-2">Attend admin panel allows you to add, edit and delete new student and train classifier.</h3>
+                </div>
+
+                <!--   Promo Section   -->
+                <div class="row">
+                    <div class="col s12 m4">
+                        <div class="center promo">
+                            <i class="large material-icons red-text text-lighten-2">add</i>
+                            <p class="promo-caption">Add new students</p>
+                            <p class="light center">Register a new student by inputting name, rollno, email, section, branch, phoneno and year. Then
+                                finally take a picture. This updated the database with details but doesn't trains the classifier.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m4">
+                        <div class="center promo">
+                            <i class="material-icons large red-text text-lighten-2">refresh</i>
+                            <p class="promo-caption">Create new classifier</p>
+                            <p class="light center">Retrain the image classifier used by the attend app with the newly registered or edited profile
+                                images. Training should be performed after every operation to include all changes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col s12 m4">
+                        <div class="center promo">
+                            <i class="material-icons large red-text text-lighten-2">search</i>
+                            <p class="promo-caption">Search a student</p>
+                            <p class="light center">A student detail can be searched easily by inputting his/her rollno and then the details can
+                                be viewed or edited according to your wish.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Attend Intro Panel Ends Here -->
     </main>
 
     <!--Footer Starts-->

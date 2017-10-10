@@ -21,6 +21,18 @@ input:-webkit-autofill {
     margin-top: 3%;
 }
 
+#panel-studentDetails {
+    display: none;
+}
+
+#mobile-panel-studentDetails {
+    display: none;
+}
+
+#panel-attendIntro {
+    display: block;
+}
+
 .header-search-wrapper {
     margin: 10px 120px auto auto;
     width: 200px;
@@ -204,3 +216,27 @@ input.header-search-input:focus {
     font-family: "Lucida Grande", "Arial", sans-serif;
     width: 760px;
 }
+
+/* Materialize fonts CSS */
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../res/materialize-fonts.woff2) format('woff2');
+  }
+  
+  .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
