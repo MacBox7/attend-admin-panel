@@ -2,16 +2,15 @@
 
     $.URL = {
         FORMREGISTER: "http://localhost:5000/api/admin/store",
-        REFRESHDATABASE: "http://127.0.0.1:5000/api/openface/train",
-        GETALLROLLNO: "http://localhost:5000/api/admin/student",
-        GETSTUDENTDETAILS: "http://localhost:5000/api/admin/student"
+        REFRESHDATABASE: "http://localhost:5000/api/openface/train",
+        GETROLLNO: "http://localhost:5000/api/admin/student"
     };
 
     $(function () {
         materializeInit();
         
         $.ajax({
-            url: $.URL.GETALLROLLNO,
+            url: $.URL.GETROLLNO,
             success: function (data) {
                 console.log('Autocomplete initialized');
                 initAutoComplete(data);
@@ -38,7 +37,7 @@
         }).then(function () {
             $.ajax({
                 type: "get",
-                url: URL.REFRESHDATABASE,
+                url: $.URL.REFRESHDATABASE,
                 success: function (data) {
                     swal(
                         'Success!',
@@ -146,14 +145,23 @@
                 $("#panel-attendIntro").css('display', 'none');
                 $("#mobile-panel-studentDetails").css('display', 'block');
                 $("#panel-studentDetails").css('display', 'block');
-
+                
                 $.ajax({
-                    type: "POST",
-                    url: $.URL.FORMREGISTER,
-                    contentType: 'application/json',
-                    dataType: "json",
-                    data: convertToJSON(data),
+                    url: $.URL.GETROLLNO + '/' + val,
                     success: function (data) {
+                        $("#profile-page-about-details li").each(function(i)
+                        {
+                           $(this).children('div').children('div:nth-child(2)').text(data.data[i]);
+                        });
+
+                        $("#mobile-profile-page-about-details li").each(function(i)
+                        {
+                           $(this).children('div').children('div:nth-child(2)').text(data.data[i]);
+                        });
+
+                        $("#profile-image, #mobile-profile-image").attr("src",data.image_path);
+
+                        $("#input-search").val("");
                         
                     },
                     error: function (error) {
