@@ -124,14 +124,15 @@
         <div class="center-modal" id="parent-modal-facecapture">
             <div class="modal" id="modal-facecapture">
                 <div class="camera">
-                    <video id="video">Video stream not available.</video>
+                    <!-- <video id="video">Video stream not available.</video> -->
+                    <img id="video" src="http://192.168.43.1:8080/video" />
                     <button id="startbutton">Capture</button>
                 </div>
             </div>
         </div>
 
         <!-- Empty Canvas To Draw The Image -->
-        <canvas id="canvas">
+        <canvas id="canvas" crossOrigin="Anonymous">
         </canvas>
 
         <!--Face Capture Modal Ends-->
@@ -339,7 +340,8 @@
     <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.js"></script>
     <script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
-    <script type="text/javascript" src="js/capture.js"></script>
+    <!-- <script type="text/javascript" src="js/capture.js"></script> -->
+    <script src="js/motionjpeg.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <!--Script Ends-->
 

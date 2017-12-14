@@ -198,6 +198,10 @@ input.header-search-input:focus {
     width: auto;
 }
 
+#video {
+    width: 630px;
+    height:450px;
+}
 
 #startbutton {
     display: block;
